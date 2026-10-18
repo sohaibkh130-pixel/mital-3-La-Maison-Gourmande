@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Maison Gourmande — Authentic Moroccan & Italian Cuisine</title>
+  <meta name="description" content="La Maison Gourmande offers a delicious fusion of Moroccan, Italian, and fast food dishes in L MDINA." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* ============ CSS VARIABLES ============ */
+    :root {
+      --color-bg: #FDFBF7;
+      --color-bg-alt: #F7F1E8;
+      --color-primary: #D4A574;
+      --color-primary-dark: #B8895A;
+      --color-secondary: #8B9D7D;
+      --color-accent: #E8B4A0;
+      --color-text: #2C2825;
+      --color-text-soft: #6B645D;
+      --color-white: #FFFFFF;
+      --color-border: #EDE6DA;
+
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --shadow-sm: 0 2px 8px rgba(44, 40, 37, 0.06);
+      --shadow-md: 0 8px 24px rgba(44, 40, 37, 0.08);
+      --shadow-lg: 0 20px 50px rgba(44, 40, 37, 0.12);
+
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+
+      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ============ RESET ============ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    ul { list-style: none; }
+    input, select, textarea { font-family: inherit; font-size: 1rem; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ============ TYPOGRAPHY ============ */
+    h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 1.2; color: var(--color-text); }
+    .section-tag {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--color-primary-dark);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+    }
+    .section-head { text-align: center; max-width: 600px; margin: 0 auto 3rem; }
+    .section-head p { color: var(--color-text-soft); }
+
+    /* ============ BUTTONS ============ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    .btn-primary {
+      background: var(--color-primary);
+      color: var(--color-white);
+    }
+    .btn-primary:hover {
+      background: var(--color-primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--color-white);
+      border-color: var(--color-white);
+    }
+    .btn-outline:hover {
+      background: var(--color-white);
+      color: var(--color-text);
+    }
+    .btn-block { width: 100%; justify-content: center; }
+
+    /* ============ NAVBAR ============ */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(253, 251, 247, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: var(--transition);
+      border-bottom: 1px solid transparent;
+    }
+    .navbar.scrolled {
+      background: rgba(253, 251, 247, 0.98);
+      box-shadow: var(--shadow-sm);
+      border-bottom-color: var(--color-border);
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--color-text);
+    }
+    .logo em { color: var(--color-primary-dark); font-style: normal; }
+    .logo-icon {
+      color: var(--color-primary);
+      font-size: 1.5rem;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-links a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--color-text);
+      position: relative;
+      transition: var(--transition);
+    }
+    .nav-links a:not(.btn)::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--color-primary);
+      transition: var(--transition);
+    }
+    .nav-links a:not(.btn):hover::after,
+    .nav-links a.active::after { width: 100%; }
+    .nav-links a:not(.btn):hover,
+    .nav-links a.active { color: var(--color-primary-dark); }
+    .nav-cta { padding: 0.6rem 1.4rem; font-size: 0.85rem; }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.4rem;
+      color: var(--color-text);
+    }
+
+    /* ============ PAGE SYSTEM ============ */
+    .page {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    .page.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ============ HERO ============ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1920') center/cover no-repeat;
+      color: var(--color-white);
+      padding: 6rem 1.5rem 4rem;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(44,40,37,0.55), rgba(44,40,37,0.35));
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 800px; }
+    .hero-tag {
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(6px);
+    }
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      color: var(--color-white);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 1s ease;
+    }
+    .hero-title span {
+      color: var(--color-primary);
+      font-style: italic;
+    }
+    .hero-subtitle {
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      margin-bottom: 2.5rem;
+      opacity: 0.95;
+      animation: fadeUp 1s ease 0.2s backwards;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp 1s ease 0.4s backwards;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-white);
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-10px); }
+    }
+
+    /* ============ PAGE HERO (Menu) ============ */
+    .page-hero {
+      position: relative;
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920') center/cover no-repeat;
+      color: var(--color-white);
+      padding: 8rem 1.5rem 4rem;
+    }
+    .page-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(44,40,37,0.6), rgba(44,40,37,0.4));
+    }
+    .page-hero-content { position: relative; z-index: 2; max-width: 700px; }
+    .page-hero-content h1 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      color: var(--color-white);
+      margin-bottom: 1rem;
+    }
+    .page-hero-content p { opacity: 0.95; font-size: 1.1rem; }
+
+    /* ============ SECTIONS ============ */
+    .section { padding: 6rem 0; }
+
+    /* ============ ABOUT ============ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-image {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .about-image img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    .about-image:hover img { transform: scale(1.05); }
+    .about-badge {
+      position: absolute;
+      bottom: 1.5rem; right: 1.5rem;
+      background: var(--color-white);
+      padding: 1.2rem 1.5rem;
+      border-radius: var(--radius-md);
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+    }
+    .about-badge .big {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      color: var(--color-primary-dark);
+      font-weight: 700;
+      line-height: 1;
+    }
+    .about-badge span:last-child {
+      font-size: 0.8rem;
+      color: var(--color-text-soft);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .about-text p {
+      color: var(--color-text-soft);
+      margin-bottom: 1rem;
+    }
+    .about-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-border);
+    }
+    .about-stats div { text-align: center; }
+    .about-stats strong {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: var(--color-primary-dark);
+    }
+    .about-stats span {
+      font-size: 0.85rem;
+      color: var(--color-text-soft);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ============ DISH CARDS ============ */
+    .dishes-grid, .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .dish-card, .menu-card {
+      background: var(--color-white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid var(--color-border);
+    }
+    .dish-card:hover, .menu-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+    .dish-img, .menu-img {
+      position: relative;
+      overflow: hidden;
+      height: 220px;
+    }
+    .dish-img img, .menu-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    .dish-card:hover .dish-img img,
+    .menu-card:hover .menu-img img { transform: scale(1.08); }
+
+    .badge {
+      position: absolute;
+      top: 1rem; left: 1rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--color-white);
+    }
+    .badge-popular { background: var(--color-primary); }
+    .badge-new { background: var(--color-secondary); }
+
+    .dish-info, .menu-info { padding: 1.5rem; }
+    .dish-info h3, .menu-info h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .dish-info p, .menu-info p {
+      color: var(--color-text-soft);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .dish-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .price {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--color-primary-dark);
+    }
+    .add-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--color-bg-alt);
+      color: var(--color-primary-dark);
+      transition: var(--transition);
+    }
+    .add-btn:hover {
+      background: var(--color-primary);
+      color: var(--color-white);
+      transform: rotate(90deg);
+    }
+
+    .center-cta { text-align: center; margin-top: 3rem; }
+
+    /* ============ FEATURES ============ */
+    .why { background: var(--color-bg-alt); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+    .feature {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: var(--color-white);
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+      border: 1px solid var(--color-border);
+    }
+    .feature:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+    .feature-icon {
+      width: 70px; height: 70px;
+      margin: 0 auto 1.5rem;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--color-white);
+      transition: var(--transition);
+    }
+    .feature:hover .feature-icon { transform: scale(1.1) rotate(10deg); }
+    .feature h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .feature p { color: var(--color-text-soft); font-size: 0.9rem; }
+
+    /* ============ GALLERY ============ */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 200px;
+      gap: 1rem;
+    }
+    .gallery-item {
+      overflow: hidden;
+      border-radius: var(--radius-md);
+      position: relative;
+    }
+    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .gallery-item:nth-child(6) { grid-column: span 2; }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    .gallery-item::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, transparent, rgba(212,165,116,0.3));
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .gallery-item:hover::after { opacity: 1; }
+    .gallery-item:hover img { transform: scale(1.1); }
+
+    /* ============ REVIEWS ============ */
+    .reviews { background: var(--color-bg-alt); }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .review {
+      background: var(--color-white);
+      padding: 2rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border);
+      transition: var(--transition);
+    }
+    .review:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .stars { color: #F5B942; margin-bottom: 1rem; font-size: 1rem; }
+    .stars i { margin-right: 2px; }
+    .review p {
+      color: var(--color-text-soft);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--color-border);
+    }
+    .reviewer img {
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .reviewer strong { display: block; font-size: 0.95rem; }
+    .reviewer span { font-size: 0.8rem; color: var(--color-text-soft); }
+
+    /* ============ RESERVATION ============ */
+    .reservation {
+      background: linear-gradient(135deg, var(--color-bg-alt), var(--color-bg));
+    }
+    .reservation-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 3rem;
+      background: var(--color-white);
+      padding: 3rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      align-items: center;
+    }
+    .reservation-info p {
+      color: var(--color-text-soft);
+      margin-bottom: 2rem;
+    }
+    .info-list li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .info-list li:last-child { border-bottom: none; }
+    .info-list i {
+      width: 40px; height: 40px;
+      background: var(--color-bg-alt);
+      color: var(--color-primary-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .reservation-form { display: flex; flex-direction: column; gap: 1.2rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--color-text);
+    }
+    .form-group input,
+    .form-group select {
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background: var(--color-bg);
+      transition: var(--transition);
+      color: var(--color-text);
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      background: var(--color-white);
+      box-shadow: 0 0 0 3px rgba(212,165,116,0.15);
+    }
+
+    /* ============ CONTACT ============ */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 3rem;
+      align-items: stretch;
+    }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.2rem;
+      background: var(--color-white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      transition: var(--transition);
+    }
+    .contact-item:hover {
+      transform: translateX(6px);
+      box-shadow: var(--shadow-sm);
+    }
+    .contact-item i {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      color: var(--color-white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-item strong { display: block; font-size: 0.95rem; }
+    .contact-item span { color: var(--color-text-soft); font-size: 0.9rem; }
+
+    .socials {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    .socials a {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text);
+      transition: var(--transition);
+    }
+    .socials a:hover {
+      background: var(--color-primary);
+      color: var(--color-white);
+      transform: translateY(-3px);
+      border-color: var(--color-primary);
+    }
+
+    .contact-map {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      min-height: 400px;
+    }
+    .contact-map iframe {
+      width: 100%; height: 100%;
+      border: none;
+      min-height: 400px;
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      background: var(--color-text);
+      color: rgba(255,255,255,0.8);
+      padding: 4rem 0 0;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+    }
+    .footer .logo { color: var(--color-white); margin-bottom: 1rem; }
+    .footer .logo em { color: var(--color-primary); }
+    .footer-col p { font-size: 0.9rem; line-height: 1.7; }
+    .footer-col h4 {
+      color: var(--color-white);
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+      font-family: var(--font-sans);
+      font-weight: 600;
+    }
+    .footer-col ul li {
+      padding: 0.4rem 0;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .footer-col ul li a { transition: var(--transition); }
+    .footer-col ul li a:hover { color: var(--color-primary); padding-left: 4px; }
+    .footer-col ul li i { color: var(--color-primary); font-size: 0.8rem; }
+
+    .newsletter {
+      display: flex;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50px;
+      padding: 0.3rem;
+      margin-top: 1rem;
+    }
+    .newsletter input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--color-white);
+      padding: 0.6rem 1rem;
+      outline: none;
+    }
+    .newsletter input::placeholder { color: rgba(255,255,255,0.5); }
+    .newsletter button {
+      width: 40px; height: 40px;
+      background: var(--color-primary);
+      color: var(--color-white);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+    .newsletter button:hover { background: var(--color-primary-dark); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 1.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+    }
+    .footer-bottom i { color: var(--color-primary); }
+
+    /* ============ MENU PAGE SPECIFIC ============ */
+    .category-bar {
+      position: sticky;
+      top: 72px;
+      background: var(--color-white);
+      z-index: 99;
+      border-bottom: 1px solid var(--color-border);
+      padding: 1rem 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .category-buttons {
+      display: flex;
+      gap: 0.6rem;
+      overflow-x: auto;
+      padding-bottom: 0.3rem;
+      scrollbar-width: thin;
+    }
+    .category-buttons::-webkit-scrollbar { height: 4px; }
+    .category-buttons::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 2px; }
+
+    .cat-btn {
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      background: var(--color-bg-alt);
+      color: var(--color-text);
+      font-size: 0.9rem;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+    .cat-btn:hover {
+      background: var(--color-white);
+      border-color: var(--color-primary);
+      color: var(--color-primary-dark);
+    }
+    .cat-btn.active {
+      background: var(--color-primary);
+      color: var(--color-white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .back-link {
+      margin-bottom: 2rem;
+    }
+    .back-link a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-text-soft);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    .back-link a:hover { color: var(--color-primary-dark); gap: 0.8rem; }
+
+    .menu-card.hidden {
+      display: none;
+    }
+    .menu-card.fade-out {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    .menu-card.fade-in {
+      animation: fadeInCard 0.5s ease forwards;
+    }
+    @keyframes fadeInCard {
+      from { opacity: 0; transform: translateY(20px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .no-results {
+      text-align: center;
+      padding: 3rem;
+      color: var(--color-text-soft);
+      font-style: italic;
+    }
+
+    /* ============ REVEAL ANIMATION ============ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 992px) {
+      .about-grid,
+      .reservation-wrap,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+      .gallery-item:nth-child(1),
+      .gallery-item:nth-child(6) { grid-column: span 1; grid-row: span 1; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 70px; left: 0; right: 0;
+        background: var(--color-white);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        box-shadow: var(--shadow-md);
+        transform: translateY(-150%);
+        transition: var(--transition);
+      }
+      .nav-links.open { transform: translateY(0); }
+      .menu-toggle { display: block; }
+      .nav-cta { width: 100%; justify-content: center; }
+
+      .section { padding: 4rem 0; }
+      .hero { min-height: 90vh; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; text-align: center; gap: 0.5rem; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+      .reservation-wrap { padding: 2rem 1.5rem; }
+      .about-image img { height: 350px; }
+    }
+
+    @media (max-width: 480px) {
+      html {
+        font-size: 80%;
+      }
+      body {
+        font-size: 0.85rem;
+      }
+      h1 { font-size: 1.8rem !important; }
+      h2 { font-size: 1.5rem !important; }
+      h3 { font-size: 1.1rem !important; }
+      h4 { font-size: 1rem !important; }
+      
+      .hero-buttons { flex-direction: column; width: 100%; }
+      .hero-buttons .btn { width: 100%; justify-content: center; }
+      .dishes-grid, .menu-grid { grid-template-columns: 1fr; }
+      .about-stats { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo" onclick="showPage('home'); return false;">
+        <i class="fa-solid fa-utensils logo-icon"></i>
+        <span>La Maison Gourmande <em>RESTAURANT</em></span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#" class="nav-link active" data-page="home" onclick="showPage('home'); return false;">Home</a>
+        <a href="#" class="nav-link" data-page="menu" onclick="showPage('menu'); return false;">Menu</a>
+        <a href="#about" onclick="showPage('home'); setTimeout(() => document.getElementById('about').scrollIntoView({behavior: 'smooth'}), 100); return false;">About</a>
+        <a href="#contact" onclick="showPage('home'); setTimeout(() => document.getElementById('contact').scrollIntoView({behavior: 'smooth'}), 100); return false;">Contact</a>
+        <a href="#reservation" class="btn btn-primary nav-cta" onclick="showPage('home'); setTimeout(() => document.getElementById('reservation').scrollIntoView({behavior: 'smooth'}), 100); return false;">Reserve a Table</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========== HOME PAGE ========== -->
+  <div id="homePage" class="page active">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span class="hero-tag">Welcome to La Maison Gourmande</span>
+        <h1 class="hero-title">Where Every Bite <br /><span>Tells a Story</span></h1>
+        <p class="hero-subtitle">
+          A warm fusion of Moroccan, Italian & fast food flavors — crafted with love in L MDINA.
+        </p>
+        <div class="hero-buttons">
+          <a href="#" class="btn btn-primary" onclick="showPage('menu'); return false;">View Menu</a>
+          <a href="#reservation" class="btn btn-outline" onclick="document.getElementById('reservation').scrollIntoView({behavior: 'smooth'}); return false;">Reserve a Table</a>
+        </div>
+      </div>
+      <div class="hero-scroll">
+        <span>Scroll</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section about" id="about">
+      <div class="container about-grid">
+        <div class="about-image reveal">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800" alt="Interior of La Maison Gourmande" />
+          <div class="about-badge">
+            <span class="big">15+</span>
+            <span>Years of Passion</span>
+          </div>
+        </div>
+        <div class="about-text reveal">
+          <span class="section-tag">Our Story</span>
+          <h2 class="section-title">A Taste of Tradition, <br />A Touch of Modernity</h2>
+          <p>
+            Nestled in the heart of <strong>L MDINA</strong>, La Maison Gourmande has been welcoming
+            guests since 2010. Our chefs blend the rich spices of Morocco, the elegance of Italian
+            cuisine, and the comfort of fast food into a unique culinary experience.
+          </p>
+          <p>
+            Every dish is prepared with fresh, locally-sourced ingredients and served with warmth
+            and hospitality — because for us, a meal is more than food, it's a memory.
+          </p>
+          <div class="about-stats">
+            <div><strong>50+</strong><span>Dishes</span></div>
+            <div><strong>10K+</strong><span>Happy Guests</span></div>
+            <div><strong>4.9</strong><span>Avg. Rating</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signature Dishes -->
+    <section class="section dishes">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag">Signature Dishes</span>
+          <h2 class="section-title">Chef's Specialties</h2>
+          <p>Handpicked favorites that our guests love the most.</p>
+        </div>
+        <div class="dishes-grid">
+          <article class="dish-card reveal">
+            <div class="dish-img">
+              <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600" alt="Margherita Pizza" />
+              <span class="badge badge-popular">Popular</span>
+            </div>
+            <div class="dish-info">
+              <h3>Authentic Margherita</h3>
+              <p>Wood-fired pizza with fresh mozzarella, basil & San Marzano tomatoes.</p>
+              <div class="dish-footer">
+                <span class="price">85 MAD</span>
+                <button class="add-btn" aria-label="Add to order"><i class="fa-solid fa-plus"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="dish-card reveal">
+            <div class="dish-img">
+              <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600" alt="Moroccan Tagine" />
+              <span class="badge badge-new">New</span>
+            </div>
+            <div class="dish-info">
+              <h3>Lamb Tagine</h3>
+              <p>Slow-cooked lamb with apricots, almonds & traditional Moroccan spices.</p>
+              <div class="dish-footer">
+                <span class="price">120 MAD</span>
+                <button class="add-btn" aria-label="Add to order"><i class="fa-solid fa-plus"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="dish-card reveal">
+            <div class="dish-img">
+              <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600" alt="Classic Burger" />
+            </div>
+            <div class="dish-info">
+              <h3>La Maison Gourmande Signature Burger</h3>
+              <p>Juicy beef patty, cheddar, caramelized onions & house sauce.</p>
+              <div class="dish-footer">
+                <span class="price">75 MAD</span>
+                <button class="add-btn" aria-label="Add to order"><i class="fa-solid fa-plus"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="dish-card reveal">
+            <div class="dish-img">
+              <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600" alt="Couscous Royal" />
+              <span class="badge badge-popular">Popular</span>
+            </div>
+            <div class="dish-info">
+              <h3>Couscous Royal</h3>
+              <p>Fluffy semolina with seven vegetables, lamb, chicken & merguez.</p>
+              <div class="dish-footer">
+                <span class="price">110 MAD</span>
+                <button class="add-btn" aria-label="Add to order"><i class="fa-solid fa-plus"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="dish-card reveal">
+            <div class="dish-img">
+              <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=600" alt="Pasta Carbonara" />
+            </div>
+            <div class="dish-info">
+              <h3>Pasta Carbonara</h3>
+              <p>Spaghetti with pancetta, egg yolk, pecorino & black pepper.</p>
+              <div class="dish-footer">
+                <span class="price">90 MAD</span>
+                <button class="add-btn" aria-label="Add to order"><i class="fa-solid fa-plus"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="dish-card reveal">
+            <div class="dish-img">
+              <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600" alt="Tiramisu" />
+              <span class="badge badge-new">New</span>
+            </div>
+            <div class="dish-info">
+              <h3>Classic Tiramisu</h3>
+              <p>Layers of mascarpone, espresso-soaked ladyfingers & cocoa.</p>
+              <div class="dish-footer">
+                <span class="price">55 MAD</span>
+                <button class="add-btn" aria-label="Add to order"><i class="fa-solid fa-plus"></i></button>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="center-cta reveal">
+          <a href="#" class="btn btn-primary" onclick="showPage('menu'); return false;">Explore Full Menu <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section why">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag">Why Choose Us</span>
+          <h2 class="section-title">What Makes Us Special</h2>
+        </div>
+        <div class="features-grid">
+          <div class="feature reveal">
+            <div class="feature-icon"><i class="fa-solid fa-leaf"></i></div>
+            <h3>Fresh Ingredients</h3>
+            <p>Locally sourced, seasonal produce — never frozen, always fresh.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+            <h3>Fast Service</h3>
+            <p>Quick preparation without ever compromising on quality or taste.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="feature-icon"><i class="fa-solid fa-couch"></i></div>
+            <h3>Cozy Atmosphere</h3>
+            <p>A warm, welcoming space designed for family and friends.</p>
+          </div>
+          <div class="feature reveal">
+            <div class="feature-icon"><i class="fa-solid fa-award"></i></div>
+            <h3>Award-Winning Chefs</h3>
+            <p>Our team has been recognized for culinary excellence across the region.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="section gallery">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag">Gallery</span>
+          <h2 class="section-title">A Glimpse Inside</h2>
+        </div>
+        <div class="gallery-grid">
+          <a href="#" class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600" alt="Restaurant ambiance" /></a>
+          <a href="#" class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600" alt="Plated dish" /></a>
+          <a href="#" class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600" alt="Chef cooking" /></a>
+          <a href="#" class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=600" alt="Fresh salad" /></a>
+          <a href="#" class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600" alt="Grilled meat" /></a>
+          <a href="#" class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=600" alt="Dessert" /></a>
+          <a href="#" class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600" alt="Healthy bowl" /></a>
+          <a href="#" class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1565895405137-61f05f1487a6?w=600" alt="Pizza slice" /></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="section reviews">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag">Testimonials</span>
+          <h2 class="section-title">What Our Guests Say</h2>
+        </div>
+        <div class="reviews-grid">
+          <div class="review reveal">
+            <div class="stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p>"Absolutely amazing! The tagine was the best I've ever had, and the service was impeccable. A must-visit in L MDINA."</p>
+            <div class="reviewer">
+              <img src="https://i.pravatar.cc/80?img=12" alt="Youssef B." />
+              <div><strong>Youssef B.</strong><span>Local Guide</span></div>
+            </div>
+          </div>
+          <div class="review reveal">
+            <div class="stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p>"The fusion of Moroccan and Italian is genius. The pasta was perfect and the ambiance is so cozy. We'll be back!"</p>
+            <div class="reviewer">
+              <img src="https://i.pravatar.cc/80?img=32" alt="Sarah M." />
+              <div><strong>Sarah M.</strong><span>Food Blogger</span></div>
+            </div>
+          </div>
+          <div class="review reveal">
+            <div class="stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+            <p>"Great burgers, fair prices, and super friendly staff. The perfect spot for a quick yet quality meal with friends."</p>
+            <div class="reviewer">
+              <img src="https://i.pravatar.cc/80?img=55" alt="Karim A." />
+              <div><strong>Karim A.</strong><span>Regular Customer</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reservation -->
+    <section class="section reservation" id="reservation">
+      <div class="container reservation-wrap">
+        <div class="reservation-info reveal">
+          <span class="section-tag">Reservation</span>
+          <h2 class="section-title">Book Your Table</h2>
+          <p>Reserve your spot and let us prepare an unforgettable dining experience for you and your loved ones.</p>
+          <ul class="info-list">
+            <li><i class="fa-solid fa-phone"></i> <span>NUMERO</span></li>
+            <li><i class="fa-solid fa-location-dot"></i> <span>L MDINA</span></li>
+            <li><i class="fa-solid fa-clock"></i> <span>L WA9T</span></li>
+          </ul>
+        </div>
+        <form class="reservation-form reveal" id="reservationForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="+212 ..." required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="date">Date</label>
+              <input type="date" id="date" name="date" required />
+            </div>
+            <div class="form-group">
+              <label for="time">Time</label>
+              <input type="time" id="time" name="time" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="guests">Number of Guests</label>
+            <select id="guests" name="guests" required>
+              <option value="">Select</option>
+              <option>1 person</option>
+              <option>2 people</option>
+              <option>3 people</option>
+              <option>4 people</option>
+              <option>5 people</option>
+              <option>6+ people</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">
+            Confirm Reservation <i class="fa-solid fa-check"></i>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact" id="contact">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag">Contact</span>
+          <h2 class="section-title">Find Us</h2>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <div class="contact-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <div><strong>Address</strong><span>L MDINA</span></div>
+            </div>
+            <div class="contact-item">
+              <i class="fa-solid fa-phone"></i>
+              <div><strong>Phone</strong><span>NUMERO</span></div>
+            </div>
+            <div class="contact-item">
+              <i class="fa-solid fa-clock"></i>
+              <div><strong>Opening Hours</strong><span>L WA9T</span></div>
+            </div>
+            <div class="contact-item">
+              <i class="fa-solid fa-envelope"></i>
+              <div><strong>Email</strong><span>contact@La Maison Gourmande.com</span></div>
+            </div>
+            <div class="socials">
+              <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+              <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+          <div class="contact-map reveal">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26648.98!2d-5.0!3d34.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sL+MDINA!5e0!3m2!1sen!2sma!4v1700000000000"
+              loading="lazy"
+              title="Restaurant location"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ========== MENU PAGE ========== -->
+  <div id="menuPage" class="page">
+
+    <!-- Menu Hero -->
+    <section class="page-hero">
+      <div class="page-hero-overlay"></div>
+      <div class="page-hero-content">
+        <span class="section-tag">Our Menu</span>
+        <h1>Discover Our Flavors</h1>
+        <p>From traditional Moroccan tagines to Italian classics and gourmet burgers — there's something for every craving.</p>
+      </div>
+    </section>
+
+    <!-- Category Filter -->
+    <div class="category-bar" id="categoryBar">
+      <div class="container">
+        <div class="category-buttons">
+          <button class="cat-btn active" data-category="all">All</button>
+          <button class="cat-btn" data-category="starters">Starters</button>
+          <button class="cat-btn" data-category="main">Main Dishes</button>
+          <button class="cat-btn" data-category="pizza">Pizza</button>
+          <button class="cat-btn" data-category="burgers">Burgers</button>
+          <button class="cat-btn" data-category="desserts">Desserts</button>
+          <button class="cat-btn" data-category="drinks">Drinks</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu Grid -->
+    <section class="section menu-section">
+      <div class="container">
+        <div class="back-link">
+          <a href="#" onclick="showPage('home'); return false;"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+        </div>
+        <div class="menu-grid" id="menuGrid">
+          <!-- STARTERS -->
+          <article class="menu-card reveal" data-category="starters">
+            <div class="menu-img">
+              <img src="https://images.unsplash.com/photo-1541529086526-db283c563270?w=600" alt="Harira soup" />
+              <span class="badge badge-popular">Popular</span>
+            </div>
+            <div class="menu-info">
+              <h3>Harira Soup</h3>
+              <p>Traditional Moroccan soup with lentils, chickpeas & herbs.</p>
+              <div class="dish-footer"><span class="price">35 MAD</span></div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="starters">
+            <div class="menu-img">
+              <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600" alt="Salad" />
+              <span class="badge badge-new">New</span>
+            </div>
+            <div class="menu-info">
+              <h3>Moroccan Salad</h3>
+              <p>Fresh tomatoes, cucumbers, onions, peppers with olive oil.</p>
+              <div class="dish-footer"><span class="price">40 MAD</span></div>
+            </div>
+          </article>
+
+          <!-- MAIN -->
+          <article class="menu-card reveal" data-category="main">
+            <div class="menu-img">
+              <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600" alt="Tagine" />
+              <span class="badge badge-popular">Popular</span>
+            </div>
+            <div class="menu-info">
+              <h3>Lamb Tagine</h3>
+              <p>Slow-cooked lamb with apricots, almonds & spices.</p>
+              <div class="dish-footer"><span class="price">120 MAD</span></div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="main">
+            <div class="menu-img">
+              <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600" alt="Couscous" />
+            </div>
+            <div class="menu-info">
+              <h3>Couscous Royal</h3>
+              <p>Fluffy semolina with seven vegetables, lamb & chicken.</p>
+              <div class="dish-footer"><span class="price">110 MAD</span></div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="main">
+            <div class="menu-img">
+              <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=600" alt="Pasta" />
+            </div>
+            <div class="menu-info">
+              <h3>Pasta Carbonara</h3>
+              <p>Spaghetti with pancetta, egg yolk & pecorino.</p>
+              <div class="dish-footer"><span class="price">90 MAD</span></div>
+            </div>
+          </article>
+
+          <!-- PIZZA -->
+          <article class="menu-card reveal" data-category="pizza">
+            <div class="menu-img">
+              <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600" alt="Margherita" />
+              <span class="badge badge-popular">Popular</span>
+            </div>
+            <div class="menu-info">
+              <h3>Margherita</h3>
+              <p>Wood-fired pizza with mozzarella, basil & tomatoes.</p>
+              <div class="dish-footer"><span class="price">85 MAD</span></div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="pizza">
+            <div class="menu-img">
+              <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600" alt="Pepperoni" />
+              <span class="badge badge-new">New</span>
+            </div>
+            <div class="menu-info">
+              <h3>Pepperoni Supreme</h3>
+              <p>Loaded with pepperoni, mozzarella & tomato sauce.</p>
+              <div class="dish-footer"><span class="price">95 MAD</span></div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="pizza">
+            <div class="menu-img">
+              <img src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=600" alt="Four Cheese" />
+            </div>
+            <div class="menu-info">
+              <h3>Quattro Formaggi</h3>
+              <p>Mozzarella, gorgonzola, parmesan & goat cheese.</p>
+              <div class="dish-footer"><span class="price">100 MAD</span></div>
+            </div>
+          </article>
+
+          <!-- BURGERS -->
+          <article class="menu-card reveal" data-category="burgers">
+            <div class="menu-img">
+              <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600" alt="Signature burger" />
+              <span class="badge badge-popular">Popular</span>
+            </div>
+            <div class="menu-info">
+              <h3>La Maison Gourmande Signature Burger</h3>
+              <p>Beef patty, cheddar, caramelized onions & house sauce.</p>
+              <div class="dish-footer"><span class="price">75 MAD</span></div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="burgers">
+            <div class="menu-img">
+              <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=600" alt="Cheeseburger" />
+            </div>
+            <div class="menu-info">
+              <h3>Classic Cheeseburger</h3>
+              <p>Juicy beef, melted cheese, lettuce & tomato.</p>
+              <div class="dish-footer"><span class="price">65 MAD</span></div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="burgers">
+            <div class="menu-img">
+              <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=600" alt="Chicken burger" />
+              <span class="badge badge-new">New</span>
+            </div>
+            <div class="menu-info">
+              <h3>Crispy Chicken Burger</h3>
+              <p>Breaded chicken, coleslaw, pickles & mayo.</p>
+              <div class="dish-footer"><span class="price">70 MAD</span></div>
+            </div>
+          </article>
+
+          <!-- DESSERTS -->
+          <article class="menu-card reveal" data-category="desserts">
+            <div class="menu-img">
+              <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600" alt="Tiramisu" />
+              <span class="badge badge-popular">Popular</span>
+            </div>
+            <div class="menu-info">
+              <h3>Classic Tiramisu</h3>
+              <p>Mascarpone, espresso-soaked ladyfingers & cocoa.</p>
+              <div class="dish-footer"><span class="price">55 MAD</span></div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="desserts">
+            <div class="menu-img">
+              <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600" alt="Cheesecake" />
+            </div>
+            <div class="menu-info">
+              <h3>NY Cheesecake</h3>
+              <p>Creamy cheesecake with berry compote.</p>
+              <div class="dish-footer"><span class="price">60 MAD</span></div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="desserts">
+            <div class="menu-img">
+              <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600" alt="Crêpe" />
+              <span class="badge badge-new">New</span>
+            </div>
+            <div class="menu-info">
+              <h3>Nutella Crêpe</h3>
+              <p>Warm crêpe with Nutella, banana & whipped cream.</p>
+              <div class="dish-footer"><span class="price">45 MAD</span></div>
+            </div>
+          </article>
+
+          <!-- DRINKS -->
+          <article class="menu-card reveal" data-category="drinks">
+            <div class="menu-img">
+              <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600" alt="Mint tea" />
+            </div>
+            <div class="menu-info">
+              <h3>Moroccan Mint Tea</h3>
+              <p>Traditional gunpowder green tea with fresh mint.</p>
+              <div class="dish-footer"><span class="price">20 MAD</span></div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="drinks">
+            <div class="menu-img">
+              <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600" alt="Fresh juice" />
+            </div>
+            <div class="menu-info">
+              <h3>Fresh Orange Juice</h3>
+              <p>100% freshly squeezed Moroccan oranges.</p>
+              <div class="dish-footer"><span class="price">25 MAD</span></div>
+            </div>
+          </article>
+
+          <article class="menu-card reveal" data-category="drinks">
+            <div class="menu-img">
+              <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600" alt="Coffee" />
+            </div>
+            <div class="menu-info">
+              <h3>Espresso</h3>
+              <p>Rich Italian espresso, perfectly brewed.</p>
+              <div class="dish-footer"><span class="price">18 MAD</span></div>
+            </div>
+          </article>
+        </div>
+
+        <p class="no-results" id="noResults" style="display:none;">No dishes found in this category.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <a href="#" class="logo" onclick="showPage('home'); return false;">
+          <i class="fa-solid fa-utensils logo-icon"></i>
+          <span>La Maison Gourmande <em>RESTAURANT</em></span>
+        </a>
+        <p>A warm fusion of Moroccan, Italian & fast food flavors in the heart of L MDINA.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
+          <li><a href="#" onclick="showPage('menu'); return false;">Menu</a></li>
+          <li><a href="#" onclick="showPage('home'); setTimeout(() => document.getElementById('about').scrollIntoView({behavior: 'smooth'}), 100); return false;">About</a></li>
+          <li><a href="#" onclick="showPage('home'); setTimeout(() => document.getElementById('reservation').scrollIntoView({behavior: 'smooth'}), 100); return false;">Reservation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><i class="fa-solid fa-location-dot"></i> L MDINA</li>
+          <li><i class="fa-solid fa-phone"></i> NUMERO</li>
+          <li><i class="fa-solid fa-clock"></i> L WA9T</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p>Get exclusive offers & updates.</p>
+        <form class="newsletter" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+          <input type="email" placeholder="Your email" required />
+          <button type="submit" aria-label="Subscribe"><i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 La Maison Gourmande. All rights reserved.</p>
+      <p>Made with <i class="fa-solid fa-heart"></i> in L MDINA</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ============ PAGE NAVIGATION ============ */
+    function showPage(pageName) {
+      // Hide all pages
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      
+      // Show selected page
+      document.getElementById(pageName + 'Page').classList.add('active');
+      
+      // Update nav links
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.dataset.page === pageName) {
+          link.classList.add('active');
+        }
+      });
+      
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      // Re-trigger reveal animations
+      setTimeout(() => {
+        document.querySelectorAll('.reveal').forEach(el => {
+          if (isElementInViewport(el)) {
+            el.classList.add('visible');
+          }
+        });
+      }, 100);
+    }
+
+    function isElementInViewport(el) {
+      const rect = el.getBoundingClientRect();
+      return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+      );
+    }
+
+    /* ============ NAVBAR SCROLL EFFECT ============ */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    /* ============ MOBILE MENU TOGGLE ============ */
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    if (menuToggle) {
+      menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+        const icon = menuToggle.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-xmark');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+          const icon = menuToggle.querySelector('i');
+          icon.classList.add('fa-bars');
+          icon.classList.remove('fa-xmark');
+        });
+      });
+    }
+
+    /* ============ REVEAL ON SCROLL ============ */
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    /* ============ MENU CATEGORY FILTER ============ */
+    const categoryButtons = document.querySelectorAll('.cat-btn');
+    const menuCards = document.querySelectorAll('.menu-card');
+    const noResults = document.getElementById('noResults');
+
+    categoryButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        categoryButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const category = btn.dataset.category;
+        let visibleCount = 0;
+
+        menuCards.forEach(card => {
+          const cardCategory = card.dataset.category;
+          if (category === 'all' || cardCategory === category) {
+            card.classList.remove('hidden', 'fade-out');
+            card.classList.add('fade-in');
+            visibleCount++;
+          } else {
+            card.classList.add('fade-out');
+            setTimeout(() => {
+              card.classList.add('hidden');
+              card.classList.remove('fade-out', 'fade-in');
+            }, 300);
+          }
+        });
+
+        if (noResults) {
+          noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+      });
+    });
+
+    /* ============ RESERVATION FORM ============ */
+    const reservationForm = document.getElementById('reservationForm');
+    if (reservationForm) {
+      const dateInput = document.getElementById('date');
+      if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+      }
+
+      reservationForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const date = document.getElementById('date').value;
+        const time = document.getElementById('time').value;
+        const guests = document.getElementById('guests').value;
+
+        if (!name || !phone || !date || !time || !guests) {
+          alert('Please fill in all fields.');
+          return;
+        }
+
+        alert(`Thank you, ${name}! 🎉\n\nYour reservation for ${guests} on ${date} at ${time} has been received.\nWe'll confirm by phone at ${phone} shortly.`);
+        reservationForm.reset();
+      });
+    }
+
+    /* ============ ADD TO ORDER BUTTON ============ */
+    document.querySelectorAll('.add-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const card = btn.closest('.dish-card, .menu-card');
+        const name = card.querySelector('h3').textContent;
+        btn.innerHTML = '<i class="fa-solid fa-check"></i>';
+        btn.style.background = 'var(--color-secondary)';
+        btn.style.color = 'white';
+        setTimeout(() => {
+          btn.innerHTML = '<i class="fa-solid fa-plus"></i>';
+          btn.style.background = '';
+          btn.style.color = '';
+        }, 1500);
+        console.log(`Added: ${name}`);
+      });
+    });
+  </script>
+
+</body>
+</html>
